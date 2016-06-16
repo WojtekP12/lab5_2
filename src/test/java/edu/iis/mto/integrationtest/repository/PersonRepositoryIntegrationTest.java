@@ -7,9 +7,12 @@ import java.util.List;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.DirtiesContext;
 
 import edu.iis.mto.integrationtest.model.Person;
 
+//restore application context to its original state before each test class is run. @DirtiesContext - force reset
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class PersonRepositoryIntegrationTest extends IntegrationTest {
 
 	@Autowired
