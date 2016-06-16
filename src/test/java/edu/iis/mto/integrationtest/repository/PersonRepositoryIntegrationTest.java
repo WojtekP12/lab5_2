@@ -3,6 +3,7 @@ package edu.iis.mto.integrationtest.repository;
 import static edu.iis.mto.integrationtest.repository.PersonBuilder.person;
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -53,6 +54,14 @@ public class PersonRepositoryIntegrationTest extends IntegrationTest {
 		personRepository.delete(1L);
 		assertEquals(null, personRepository.findOne(1L));
 		assertEquals(1, personRepository.count());	
+	}
+	
+	@Test
+	public void testFindPeopleByNameLike() 
+	{
+		List<Person> foundPersons = new ArrayList<Person>();
+		foundPersons = personRepository.findByFirstNameLike("Marian");
+		assertEquals(2, foundPersons.size());
 	}
 	
 	private Person a(PersonBuilder builder) {
